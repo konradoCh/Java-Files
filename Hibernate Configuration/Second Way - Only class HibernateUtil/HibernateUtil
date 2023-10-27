@@ -18,6 +18,7 @@ public class HibernateUtil {
             Map.entry(Environment.SHOW_SQL, true),
             Map.entry(Environment.FORMAT_SQL, false)
     );
+
     private static final SessionFactory sessionFactory = loadSessionFactory();
     private static SessionFactory loadSessionFactory() {
         try {
@@ -25,7 +26,7 @@ public class HibernateUtil {
                     .applySettings(SETTINGS)
                     .build();
             Metadata metadata = new MetadataSources(standardRegistry)
-                    .addAnnotatedClass(Employee.class) ①
+                    .addAnnotatedClass(Employee.class)   // nazwa klasy
   .getMetadataBuilder()
                     .build();
             return metadata.getSessionFactoryBuilder().build();
@@ -33,6 +34,7 @@ public class HibernateUtil {
             throw new ExceptionInInitializerError(ex);
         }
     }
+
     static void closeSessionFactory() {
         try {
             sessionFactory.close();
@@ -40,6 +42,7 @@ public class HibernateUtil {
             System.err.println("Exception while closing SessionFactory: " + ex);
         }
     }
+
     static Session getSession() {
         try {
             return sessionFactory.openSession();
