@@ -1,4 +1,4 @@
-// "/META-INF/hibernate.cfg.xml" - sciezka pliku
+// "resources/META-INF/hibernate.cfg.xml" - sciezka pliku
 
 
 <?xml version="1.0" encoding="UTF-8"?>
