@@ -20,15 +20,18 @@ public class HibernateUtil {
     );
 
     private static final SessionFactory sessionFactory = loadSessionFactory();
+
     private static SessionFactory loadSessionFactory() {
         try {
             ServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(SETTINGS)
                     .build();
+
             Metadata metadata = new MetadataSources(standardRegistry)
                     .addAnnotatedClass(Employee.class)   // nazwa klasy
-  .getMetadataBuilder()
+                    .getMetadataBuilder()
                     .build();
+
             return metadata.getSessionFactoryBuilder().build();
         } catch (Throwable ex) {
             throw new ExceptionInInitializerError(ex);
